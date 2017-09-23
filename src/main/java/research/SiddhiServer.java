@@ -2,8 +2,6 @@ package research;
 
 import org.tanukisoftware.wrapper.WrapperListener;
 import org.tanukisoftware.wrapper.WrapperManager;
-import org.wso2.carbon.databridge.core.exception.DataBridgeException;
-import org.wso2.carbon.databridge.core.exception.StreamDefinitionStoreException;
 import org.wso2.siddhi.core.ExecutionPlanRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
@@ -11,6 +9,8 @@ import org.wso2.siddhi.core.query.output.callback.QueryCallback;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 import research.consumer.EventReceiver;
+import research.publisher.EventPublisher;
+import research.util.Properties;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +22,14 @@ public class SiddhiServer implements WrapperListener {
     private ExecutionPlanRuntime executionPlanRuntimeHE;
     private InputHandler inputHandler;
     private InputHandler inputHandlerHE;
+
+    private EventReceiver eventReceiver;
+    private EventPublisher eventPublisher;
+
+    private static final String INPUT_FILTER_STREAM_ID = "inputFilterStream";
+    private static final String INPUT_FILTER_STREAM_ID_VERSION = "inputFilterStream:1.0.0";
+    private static final String INPUT_HE_FILTER_STREAM_ID = "inputHEFilterStream";
+    private static final String INPUT_HE_FILTER_STREAM_ID_VERSION = "inputHEFilterStream:1.0.0";
 
     public static void main(String[] args) throws Exception {
         WrapperManager.start(new SiddhiServer(), args);
@@ -52,41 +60,32 @@ public class SiddhiServer implements WrapperListener {
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
-                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventPublisher.publish(INPUT_FILTER_STREAM_ID_VERSION, timeStamp, inEvents, removeEvents);
             }
         });
         executionPlanRuntimeHE.addCallback("query2", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
-                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventPublisher.publish(INPUT_HE_FILTER_STREAM_ID_VERSION, timeStamp, inEvents, removeEvents);
             }
         });
 
         //Retrieving InputHandler to push events into Siddhi
-        inputHandler = executionPlanRuntime.getInputHandler("inputFilterStream");
-        inputHandlerHE = executionPlanRuntimeHE.getInputHandler("inputHEFilterStream");
+        inputHandler = executionPlanRuntime.getInputHandler(INPUT_FILTER_STREAM_ID);
+        inputHandlerHE = executionPlanRuntimeHE.getInputHandler(INPUT_HE_FILTER_STREAM_ID);
         Map<String, InputHandler> inputHandlers = new HashMap<String, InputHandler>();
-        inputHandlers.put("inputFilterStream", inputHandler);
-        inputHandlers.put("inputHEFilterStream", inputHandlerHE);
+        inputHandlers.put(INPUT_FILTER_STREAM_ID_VERSION, inputHandler);
+        inputHandlers.put(INPUT_HE_FILTER_STREAM_ID_VERSION, inputHandlerHE);
 
         //Starting event processing
         executionPlanRuntime.start();
         executionPlanRuntimeHE.start();
 
-        EventReceiver eventReceiver = new EventReceiver(inputHandlers);
-        String host = Properties.PROP.getProperty("databridge.host");
-        int port = Integer.parseInt(Properties.PROP.getProperty("databridge.receiver.port"));
-        String protocol = Properties.PROP.getProperty("databridge.protocol");
-        try {
-            eventReceiver.start(host, port, protocol);
-        } catch (DataBridgeException e) {
-            e.printStackTrace();
-        } catch (StreamDefinitionStoreException e) {
-            e.printStackTrace();
-        }
+        eventReceiver = new EventReceiver(inputHandlers);
+        eventReceiver.init();
 
-//        DummyPublisher dummyPublisher = new DummyPublisher(inputHandler);
-//        dummyPublisher.init();
+        eventPublisher = new EventPublisher();
+        eventPublisher.init();
 
         return null;
     }
@@ -98,9 +97,10 @@ public class SiddhiServer implements WrapperListener {
 
         //Shutting down the runtime
         executionPlanRuntime.shutdown();
-
         //Shutting down Siddhi
         siddhiManager.shutdown();
+        eventReceiver.stop();
+        eventPublisher.stop();
 
         return 0;
     }

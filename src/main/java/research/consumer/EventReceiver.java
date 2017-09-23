@@ -36,6 +36,8 @@ import org.wso2.carbon.databridge.receiver.binary.internal.BinaryDataReceiver;
 import org.wso2.carbon.databridge.receiver.thrift.ThriftDataReceiver;
 import org.wso2.carbon.user.api.UserStoreException;
 import org.wso2.siddhi.core.stream.input.InputHandler;
+import research.util.Properties;
+import research.util.Util;
 
 import java.io.IOException;
 import java.util.List;
@@ -55,7 +57,22 @@ public class EventReceiver {
         this.inputHandlers = inputHandlers;
     }
 
-    public void start(String host, int receiverPort, String protocol) throws DataBridgeException, StreamDefinitionStoreException {
+    public void init() {
+        String host = Properties.PROP.getProperty("databridge.receiver.host");
+        int port = Integer.parseInt(Properties.PROP.getProperty("databridge.receiver.port"));
+        String protocol = Properties.PROP.getProperty("databridge.protocol");
+        try {
+            start(host, port, protocol);
+        } catch (DataBridgeException e) {
+            e.printStackTrace();
+        } catch (StreamDefinitionStoreException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void start(String host, int receiverPort, String protocol) throws DataBridgeException, StreamDefinitionStoreException {
+        Util.setTrustStoreParams();
+        Util.setPseudoCarbonHome();
         Util.setKeyStoreParams();
 
         DataBridge databridge = new DataBridge(new AuthenticationHandler() {
@@ -119,7 +136,7 @@ public class EventReceiver {
             thriftDataReceiver = new ThriftDataReceiver(receiverPort, databridge);
             thriftDataReceiver.start(host);
         }
-        log.info("Test Server Started");
+        log.info("Event receiver started");
     }
 
     public void stop() {

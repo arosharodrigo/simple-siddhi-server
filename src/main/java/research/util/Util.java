@@ -1,4 +1,4 @@
-package research.consumer;
+package research.util;
 
 /*
  * Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
@@ -58,6 +58,10 @@ public class Util {
 
     public static String getDataBridgeConfigPath() {
         return configFiles + File.separator + "data-bridge-config.xml";
+    }
+
+    public static String getDataAgentConfigPath() {
+        return configFiles + File.separator + "data-agent-config.xml";
     }
 
     public static List<StreamDefinition> loadStreamDefinitions() {

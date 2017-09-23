@@ -1,4 +1,4 @@
-package research;
+package research.publisher;
 
 import org.wso2.siddhi.core.stream.input.InputHandler;
 
