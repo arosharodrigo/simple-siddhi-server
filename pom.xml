@@ -218,11 +218,11 @@
                                         </property>
                                         <property>
                                             <name>wrapper.java.initmemory</name>
-                                            <value>4096</value>
+                                            <value>3072</value>
                                         </property>
                                         <property>
                                             <name>wrapper.java.maxmemory</name>
-                                            <value>4096</value>
+                                            <value>3072</value>
                                         </property>
                                         <property>
                                             <name>wrapper.java.library.path.2</name>
@@ -251,6 +251,18 @@
                                         <property>
                                             <name>wrapper.java.additional.6</name>
                                             <value>-XX:InitiatingHeapOccupancyPercent=70</value>
+                                        </property>
+                                        <property>
+                                            <name>wrapper.java.additional.7</name>
+                                            <value>-XX:+UnlockCommercialFeatures</value>
+                                        </property>
+                                        <property>
+                                            <name>wrapper.java.additional.8</name>
+                                            <value>-XX:+FlightRecorder</value>
+                                        </property>
+                                        <property>
+                                            <name>wrapper.java.additional.9</name>
+                                            <value>-XX:StartFlightRecording=duration=600s,filename=logs/simple-siddhi-server.jfr,settings=Heap</value>
                                         </property>
                                     </configuration>
                                     <includes>

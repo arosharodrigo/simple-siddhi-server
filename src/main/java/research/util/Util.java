@@ -33,8 +33,8 @@ public class Util {
 
     private static Log log = LogFactory.getLog(Util.class);
 
-    static String rootDir = "/home/arosha/projects/Siddhi/projects/start-2017-06-19/Homomorphic/projects/my-git/simple-siddhi-server/src/main/resources";
-//    static String rootDir = "conf";
+//    static String rootDir = "/home/arosha/projects/Siddhi/projects/start-2017-06-19/Homomorphic/projects/my-git/simple-siddhi-server/src/main/resources";
+    static String rootDir = "conf";
     static String pseudoCarbonHome = rootDir + "/files";
     static File configFiles = new File(rootDir + "/files/configs");
     static File streamDefinitionFile = new File(rootDir + "/files/streamDefinitions");
