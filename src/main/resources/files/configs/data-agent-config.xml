@@ -21,44 +21,48 @@
     <Agent>
         <Name>Thrift</Name>
         <DataEndpointClass>org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint</DataEndpointClass>
-        <!--<TrustSore>src/test/resources/client-truststore.jks</TrustSore>-->
-        <!--<TrustSorePassword>wso2carbon</TrustSorePassword>-->
-        <QueueSize>32768</QueueSize>
-        <BatchSize>10</BatchSize>
-        <CorePoolSize>200</CorePoolSize>
+        <TrustSore>conf/files/configs/client-truststore.jks</TrustSore>
+        <TrustSorePassword>wso2carbon</TrustSorePassword>
+        <QueueSize>65536</QueueSize>
+        <BatchSize>600</BatchSize>
+        <!--<QueueSize>16</QueueSize>-->
+        <!--<BatchSize>1</BatchSize>-->
+        <CorePoolSize>600</CorePoolSize>
+        <MaxPoolSize>600</MaxPoolSize>
         <SocketTimeoutMS>30000</SocketTimeoutMS>
-        <MaxPoolSize>200</MaxPoolSize>
         <KeepAliveTimeInPool>20</KeepAliveTimeInPool>
         <ReconnectionInterval>30</ReconnectionInterval>
-        <MaxTransportPoolSize>250</MaxTransportPoolSize>
-        <MaxIdleConnections>250</MaxIdleConnections>
-        <EvictionTimePeriod>5500</EvictionTimePeriod>
+        <MaxTransportPoolSize>750</MaxTransportPoolSize>
+        <MaxIdleConnections>750</MaxIdleConnections>
+        <EvictionTimePeriod>100</EvictionTimePeriod>
         <MinIdleTimeInPool>5000</MinIdleTimeInPool>
-        <SecureMaxTransportPoolSize>250</SecureMaxTransportPoolSize>
-        <SecureMaxIdleConnections>250</SecureMaxIdleConnections>
-        <SecureEvictionTimePeriod>5500</SecureEvictionTimePeriod>
+        <SecureMaxTransportPoolSize>750</SecureMaxTransportPoolSize>
+        <SecureMaxIdleConnections>750</SecureMaxIdleConnections>
+        <SecureEvictionTimePeriod>100</SecureEvictionTimePeriod>
         <SecureMinIdleTimeInPool>5000</SecureMinIdleTimeInPool>
     </Agent>
 
     <Agent>
         <Name>Binary</Name>
         <DataEndpointClass>org.wso2.carbon.databridge.agent.endpoint.binary.BinaryDataEndpoint</DataEndpointClass>
-        <!--<TrustSore>src/test/resources/client-truststore.jks</TrustSore>-->
-        <!--<TrustSorePassword>wso2carbon</TrustSorePassword>-->
-        <QueueSize>32768</QueueSize>
-        <BatchSize>10</BatchSize>
-        <CorePoolSize>200</CorePoolSize>
-        <MaxPoolSize>200</MaxPoolSize>
+        <TrustSore>conf/files/configs/client-truststore.jks</TrustSore>
+        <TrustSorePassword>wso2carbon</TrustSorePassword>
+        <QueueSize>65536</QueueSize>
+        <BatchSize>600</BatchSize>
+        <!--<QueueSize>16</QueueSize>-->
+        <!--<BatchSize>1</BatchSize>-->
+        <CorePoolSize>600</CorePoolSize>
+        <MaxPoolSize>600</MaxPoolSize>
         <SocketTimeoutMS>30000</SocketTimeoutMS>
         <KeepAliveTimeInPool>20</KeepAliveTimeInPool>
         <ReconnectionInterval>30</ReconnectionInterval>
-        <MaxTransportPoolSize>250</MaxTransportPoolSize>
-        <MaxIdleConnections>250</MaxIdleConnections>
-        <EvictionTimePeriod>5500</EvictionTimePeriod>
+        <MaxTransportPoolSize>750</MaxTransportPoolSize>
+        <MaxIdleConnections>750</MaxIdleConnections>
+        <EvictionTimePeriod>100</EvictionTimePeriod>
         <MinIdleTimeInPool>5000</MinIdleTimeInPool>
-        <SecureMaxTransportPoolSize>250</SecureMaxTransportPoolSize>
-        <SecureMaxIdleConnections>250</SecureMaxIdleConnections>
-        <SecureEvictionTimePeriod>5500</SecureEvictionTimePeriod>
+        <SecureMaxTransportPoolSize>750</SecureMaxTransportPoolSize>
+        <SecureMaxIdleConnections>750</SecureMaxIdleConnections>
+        <SecureEvictionTimePeriod>100</SecureEvictionTimePeriod>
         <SecureMinIdleTimeInPool>5000</SecureMinIdleTimeInPool>
     </Agent>
 </DataAgentsConfiguration>
