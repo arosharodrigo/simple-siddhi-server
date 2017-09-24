@@ -40,7 +40,6 @@ public class EventPublisher {
     public void init() {
         AgentHolder.setConfigPath(Util.getDataAgentConfigPath());
         Util.setTrustStoreParams();
-        Util.setKeyStoreParams();
 
         String username = Properties.PROP.getProperty("databridge.publisher.username");
         String password = Properties.PROP.getProperty("databridge.publisher.password");
