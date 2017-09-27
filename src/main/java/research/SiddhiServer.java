@@ -1,5 +1,7 @@
 package research;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.tanukisoftware.wrapper.WrapperListener;
 import org.tanukisoftware.wrapper.WrapperManager;
 import org.wso2.siddhi.core.ExecutionPlanRuntime;
@@ -60,13 +62,21 @@ public class SiddhiServer implements WrapperListener {
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
-                eventPublisher.publish(INPUT_FILTER_STREAM_ID_VERSION, timeStamp, inEvents, removeEvents);
+//                eventPublisher.publish(INPUT_FILTER_STREAM_ID_VERSION, timeStamp, inEvents, removeEvents);
+                System.out.println("Received events size for query1 [" + inEvents.length + "]");
+                for(Event event : inEvents) {
+                    System.out.println("Received event for query1 [" + event + "]");
+                }
             }
         });
         executionPlanRuntimeHE.addCallback("query2", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
-                eventPublisher.publish(INPUT_HE_FILTER_STREAM_ID_VERSION, timeStamp, inEvents, removeEvents);
+//                eventPublisher.publish(INPUT_HE_FILTER_STREAM_ID_VERSION, timeStamp, inEvents, removeEvents);
+                System.out.println("Received events size for query2 [" + inEvents.length + "]");
+                for(Event event : inEvents) {
+                    System.out.println("Received event for query2 [" + event + "]");
+                }
             }
         });
 

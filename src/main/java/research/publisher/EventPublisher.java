@@ -38,7 +38,7 @@ public class EventPublisher {
     private DataPublisher dataPublisher;
 
     public void init() {
-        AgentHolder.setConfigPath(Util.getDataAgentConfigPath());
+        /*AgentHolder.setConfigPath(Util.getDataAgentConfigPath());
         Util.setTrustStoreParams();
 
         String username = Properties.PROP.getProperty("databridge.publisher.username");
@@ -60,7 +60,7 @@ public class EventPublisher {
             e.printStackTrace();
         } catch (TransportException e) {
             e.printStackTrace();
-        }
+        }*/
         log.info("Event publisher started");
     }
 
