@@ -7,7 +7,6 @@ import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
 import org.wso2.siddhi.core.stream.input.InputHandler;
-import org.wso2.siddhi.core.util.EventPrinter;
 import research.consumer.EventReceiver;
 import research.publisher.EventPublisher;
 import research.util.Properties;
@@ -20,8 +19,10 @@ public class SiddhiServer implements WrapperListener {
     private SiddhiManager siddhiManager;
     private ExecutionPlanRuntime executionPlanRuntime;
     private ExecutionPlanRuntime executionPlanRuntimeHE;
+    private ExecutionPlanRuntime executionPlanRuntimeEmails;
     private InputHandler inputHandler;
     private InputHandler inputHandlerHE;
+    private InputHandler inputEmailsHandler;
 
     private EventReceiver eventReceiver;
     private EventPublisher eventPublisher;
@@ -30,6 +31,9 @@ public class SiddhiServer implements WrapperListener {
     private static final String INPUT_FILTER_STREAM_ID_VERSION = "inputFilterStream:1.0.0";
     private static final String INPUT_HE_FILTER_STREAM_ID = "inputHEFilterStream";
     private static final String INPUT_HE_FILTER_STREAM_ID_VERSION = "inputHEFilterStream:1.0.0";
+    private static final String INPUT_EMAILS_STREAM_ID = "inputEmailsStream";
+    private static final String INPUT_EMAILS_STREAM_ID_VERSION = "inputEmailsStream:1.0.0";
+    private static final String OUTPUT_EMAILS_STREAM_ID_VERSION = "outputEmailsStream:1.0.0";
 
     public static void main(String[] args) throws Exception {
         WrapperManager.start(new SiddhiServer(), args);
@@ -51,10 +55,12 @@ public class SiddhiServer implements WrapperListener {
 
         String executionPlan = Properties.PROP.getProperty("siddhi.query1");
         String executionPlanHE = Properties.PROP.getProperty("siddhi.query2");
+        String executionPlanEmails = Properties.PROP.getProperty("siddhi.query3");
 
         //Generating runtime
         executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(executionPlan);
         executionPlanRuntimeHE = siddhiManager.createExecutionPlanRuntime(executionPlanHE);
+        executionPlanRuntimeEmails = siddhiManager.createExecutionPlanRuntime(executionPlanEmails);
 
         //Adding callback to retrieve output events from query
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
@@ -69,17 +75,27 @@ public class SiddhiServer implements WrapperListener {
                 eventPublisher.publish(INPUT_HE_FILTER_STREAM_ID_VERSION, timeStamp, inEvents, removeEvents);
             }
         });
+        executionPlanRuntimeEmails.addCallback("query3", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
+                System.out.println("Received event count [" + inEvents[0].getData().length + "]");
+                eventPublisher.publish(OUTPUT_EMAILS_STREAM_ID_VERSION, timeStamp, inEvents, removeEvents);
+            }
+        });
 
         //Retrieving InputHandler to push events into Siddhi
         inputHandler = executionPlanRuntime.getInputHandler(INPUT_FILTER_STREAM_ID);
         inputHandlerHE = executionPlanRuntimeHE.getInputHandler(INPUT_HE_FILTER_STREAM_ID);
+        inputEmailsHandler = executionPlanRuntimeEmails.getInputHandler(INPUT_EMAILS_STREAM_ID);
         Map<String, InputHandler> inputHandlers = new HashMap<String, InputHandler>();
         inputHandlers.put(INPUT_FILTER_STREAM_ID_VERSION, inputHandler);
         inputHandlers.put(INPUT_HE_FILTER_STREAM_ID_VERSION, inputHandlerHE);
+        inputHandlers.put(INPUT_EMAILS_STREAM_ID_VERSION, inputEmailsHandler);
 
         //Starting event processing
         executionPlanRuntime.start();
         executionPlanRuntimeHE.start();
+        executionPlanRuntimeEmails.start();
 
         eventReceiver = new EventReceiver(inputHandlers);
         eventReceiver.init();
