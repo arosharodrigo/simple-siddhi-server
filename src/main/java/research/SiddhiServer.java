@@ -78,7 +78,6 @@ public class SiddhiServer implements WrapperListener {
         executionPlanRuntimeEmails.addCallback("query3", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
-                System.out.println("Received event count [" + inEvents[0].getData().length + "]");
                 eventPublisher.publish(OUTPUT_EMAILS_STREAM_ID_VERSION, timeStamp, inEvents, removeEvents);
             }
         });
