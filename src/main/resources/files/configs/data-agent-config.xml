@@ -34,11 +34,11 @@
         <ReconnectionInterval>30</ReconnectionInterval>
         <MaxTransportPoolSize>750</MaxTransportPoolSize>
         <MaxIdleConnections>750</MaxIdleConnections>
-        <EvictionTimePeriod>10000</EvictionTimePeriod>
+        <EvictionTimePeriod>100</EvictionTimePeriod>
         <MinIdleTimeInPool>5000</MinIdleTimeInPool>
         <SecureMaxTransportPoolSize>750</SecureMaxTransportPoolSize>
         <SecureMaxIdleConnections>750</SecureMaxIdleConnections>
-        <SecureEvictionTimePeriod>10000</SecureEvictionTimePeriod>
+        <SecureEvictionTimePeriod>100</SecureEvictionTimePeriod>
         <SecureMinIdleTimeInPool>5000</SecureMinIdleTimeInPool>
     </Agent>
 
