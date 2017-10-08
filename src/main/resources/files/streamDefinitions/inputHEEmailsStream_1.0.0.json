@@ -1,0 +1,40 @@
+{
+  "name": "inputHEEmailsStream",
+  "version": "1.0.0",
+  "nickName": "",
+  "description": "",
+  "payloadData": [
+    {
+      "name": "iij_timestamp",
+      "type": "LONG"
+    },
+    {
+      "name": "fromAddress",
+      "type": "STRING"
+    },
+    {
+      "name": "toAddresses",
+      "type": "STRING"
+    },
+    {
+      "name": "ccAddresses",
+      "type": "STRING"
+    },
+    {
+      "name": "bccAddresses",
+      "type": "STRING"
+    },
+    {
+      "name": "subject",
+      "type": "STRING"
+    },
+    {
+      "name": "body",
+      "type": "STRING"
+    },
+    {
+      "name": "regexstr",
+      "type": "STRING"
+    }
+  ]
+}

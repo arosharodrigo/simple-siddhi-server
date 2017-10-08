@@ -1,0 +1,36 @@
+{
+  "name": "outputHEEmailsStream",
+  "version": "1.0.0",
+  "nickName": "",
+  "description": "",
+  "payloadData": [
+    {
+      "name": "iij_timestamp",
+      "type": "LONG"
+    },
+    {
+      "name": "fromAddress",
+      "type": "STRING"
+    },
+    {
+      "name": "toAdds",
+      "type": "STRING"
+    },
+    {
+      "name": "ccAdds",
+      "type": "STRING"
+    },
+    {
+      "name": "bccAdds",
+      "type": "STRING"
+    },
+    {
+      "name": "updatedSubject",
+      "type": "STRING"
+    },
+    {
+      "name": "bodyObfuscated",
+      "type": "STRING"
+    }
+  ]
+}
