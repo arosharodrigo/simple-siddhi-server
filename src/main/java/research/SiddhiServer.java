@@ -1,5 +1,6 @@
 package research;
 
+import org.apache.log4j.Logger;
 import org.tanukisoftware.wrapper.WrapperListener;
 import org.tanukisoftware.wrapper.WrapperManager;
 import org.wso2.siddhi.core.ExecutionPlanRuntime;
@@ -15,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SiddhiServer implements WrapperListener {
+
+    static final Logger log = Logger.getLogger(SiddhiServer.class);
 
     private SiddhiManager siddhiManager;
 
@@ -38,7 +41,7 @@ public class SiddhiServer implements WrapperListener {
     private static final String INPUT_EMAILS_STREAM_ID = "inputEmailsStream";
     private static final String INPUT_EMAILS_STREAM_ID_VERSION = "inputEmailsStream:1.0.0";
     private static final String OUTPUT_EMAILS_STREAM_ID_VERSION = "outputEmailsStream:1.0.0";
-    private static final String INPUT_HE_EMAILS_STREAM_ID = "inputEmailsStream";
+    private static final String INPUT_HE_EMAILS_STREAM_ID = "inputHEEmailsStream";
     private static final String INPUT_HE_EMAILS_STREAM_ID_VERSION = "inputHEEmailsStream:1.0.0";
     private static final String OUTPUT_HE_EMAILS_STREAM_ID_VERSION = "outputHEEmailsStream:1.0.0";
 
@@ -101,7 +104,7 @@ public class SiddhiServer implements WrapperListener {
         inputHandler = executionPlanRuntime.getInputHandler(INPUT_FILTER_STREAM_ID);
         inputHandlerHE = executionPlanRuntimeHE.getInputHandler(INPUT_HE_FILTER_STREAM_ID);
         inputEmailsHandler = executionPlanRuntimeEmails.getInputHandler(INPUT_EMAILS_STREAM_ID);
-        inputEmailsHandlerHE = executionPlanRuntimeEmails.getInputHandler(INPUT_HE_EMAILS_STREAM_ID);
+        inputEmailsHandlerHE = executionPlanRuntimeEmailsHE.getInputHandler(INPUT_HE_EMAILS_STREAM_ID);
 
         Map<String, InputHandler> inputHandlers = new HashMap<String, InputHandler>();
         inputHandlers.put(INPUT_FILTER_STREAM_ID_VERSION, inputHandler);
@@ -131,6 +134,9 @@ public class SiddhiServer implements WrapperListener {
 
         //Shutting down the runtime
         executionPlanRuntime.shutdown();
+        executionPlanRuntimeHE.shutdown();
+        executionPlanRuntimeEmails.shutdown();
+        executionPlanRuntimeEmailsHE.shutdown();
         //Shutting down Siddhi
         siddhiManager.shutdown();
         eventReceiver.stop();

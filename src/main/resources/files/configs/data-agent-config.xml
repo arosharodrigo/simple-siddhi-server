@@ -27,17 +27,17 @@
         <BatchSize>1000</BatchSize>
         <!--<QueueSize>16</QueueSize>-->
         <!--<BatchSize>1</BatchSize>-->
-        <CorePoolSize>1000</CorePoolSize>
-        <MaxPoolSize>1000</MaxPoolSize>
+        <CorePoolSize>100</CorePoolSize>
+        <MaxPoolSize>100</MaxPoolSize>
         <SocketTimeoutMS>30000</SocketTimeoutMS>
         <KeepAliveTimeInPool>20</KeepAliveTimeInPool>
         <ReconnectionInterval>30</ReconnectionInterval>
-        <MaxTransportPoolSize>750</MaxTransportPoolSize>
-        <MaxIdleConnections>750</MaxIdleConnections>
+        <MaxTransportPoolSize>250</MaxTransportPoolSize>
+        <MaxIdleConnections>250</MaxIdleConnections>
         <EvictionTimePeriod>100</EvictionTimePeriod>
         <MinIdleTimeInPool>5000</MinIdleTimeInPool>
-        <SecureMaxTransportPoolSize>750</SecureMaxTransportPoolSize>
-        <SecureMaxIdleConnections>750</SecureMaxIdleConnections>
+        <SecureMaxTransportPoolSize>250</SecureMaxTransportPoolSize>
+        <SecureMaxIdleConnections>250</SecureMaxIdleConnections>
         <SecureEvictionTimePeriod>100</SecureEvictionTimePeriod>
         <SecureMinIdleTimeInPool>5000</SecureMinIdleTimeInPool>
     </Agent>

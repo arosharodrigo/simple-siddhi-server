@@ -166,8 +166,8 @@
                     <showConsoleWindow>true</showConsoleWindow>
                     <configurationDirectory>conf</configurationDirectory>
                     <defaultJvmSettings>
-                        <initialMemorySize>1024M</initialMemorySize>
-                        <maxMemorySize>1024M</maxMemorySize>
+                        <initialMemorySize>3072M</initialMemorySize>
+                        <maxMemorySize>3072M</maxMemorySize>
                     </defaultJvmSettings>
                     <daemons>
                         <daemon>
