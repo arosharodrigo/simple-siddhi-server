@@ -6,7 +6,7 @@
   "payloadData": [
     {
       "name": "iij_timestamp",
-      "type": "LONG"
+      "type": "STRING"
     },
     {
       "name": "fromAddress",
