@@ -1,0 +1,73 @@
+{
+  "name": "outputEdgarStream",
+  "version": "1.0.0",
+  "nickName": "",
+  "description": "",
+  "payloadData": [
+    {
+      "name": "iij_timestamp",
+      "type": "LONG"
+    },
+    {
+      "name": "ip",
+      "type": "STRING"
+    },
+    {
+      "name": "date",
+      "type": "STRING"
+    },
+    {
+      "name": "time",
+      "type": "STRING"
+    },
+    {
+      "name": "zone",
+      "type": "STRING"
+    },
+    {
+      "name": "cik",
+      "type": "STRING"
+    },
+    {
+      "name": "accession",
+      "type": "STRING"
+    },
+    {
+      "name": "extension",
+      "type": "STRING"
+    },
+    {
+      "name": "code",
+      "type": "STRING"
+    },
+    {
+      "name": "size",
+      "type": "STRING"
+    },
+    {
+      "name": "idx",
+      "type": "STRING"
+    },
+    {
+      "name": "norefer",
+      "type": "STRING"
+    },
+    {
+      "name": "noagent",
+      "type": "STRING"
+    },
+    {
+      "name": "find",
+      "type": "STRING"
+    },
+    {
+      "name": "crawler",
+      "type": "STRING"
+    },
+    {
+      "name": "browser",
+      "type": "STRING"
+    }
+  ]
+}
+
