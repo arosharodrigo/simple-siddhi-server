@@ -16,7 +16,7 @@
 
 <dataBridgeConfiguration>
 
-    <workerThreads>1000</workerThreads>
+    <workerThreads>20</workerThreads>
     <eventBufferCapacity>100000</eventBufferCapacity>
     <clientTimeoutMin>30</clientTimeoutMin>
 
@@ -28,8 +28,8 @@
     <dataReceiver name="Binary">
         <config name="tcpPort">10411</config>
         <config name="sslPort">10511</config>
-        <config name="sslReceiverThreadPoolSize">100</config>
-        <config name="tcpReceiverThreadPoolSize">100</config>
+        <config name="sslReceiverThreadPoolSize">20</config>
+        <config name="tcpReceiverThreadPoolSize">20</config>
     </dataReceiver>
 
 </dataBridgeConfiguration>
