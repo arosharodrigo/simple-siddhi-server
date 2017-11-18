@@ -17,7 +17,7 @@
 <dataBridgeConfiguration>
 
     <workerThreads>20</workerThreads>
-    <eventBufferCapacity>100000</eventBufferCapacity>
+    <eventBufferCapacity>1000000</eventBufferCapacity>
     <clientTimeoutMin>30</clientTimeoutMin>
 
     <dataReceiver name="Thrift">
