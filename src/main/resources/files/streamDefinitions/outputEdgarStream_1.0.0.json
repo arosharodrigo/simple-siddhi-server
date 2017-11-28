@@ -22,7 +22,7 @@
     },
     {
       "name": "zone",
-      "type": "STRING"
+      "type": "INT"
     },
     {
       "name": "cik",
@@ -58,7 +58,7 @@
     },
     {
       "name": "find",
-      "type": "STRING"
+      "type": "INT"
     },
     {
       "name": "crawler",

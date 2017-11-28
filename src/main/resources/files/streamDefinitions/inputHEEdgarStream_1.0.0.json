@@ -21,7 +21,11 @@
       "type": "STRING"
     },
     {
-      "name": "zone",
+      "name": "zoneBit1",
+      "type": "STRING"
+    },
+    {
+      "name": "zoneBit2",
       "type": "STRING"
     },
     {
@@ -57,7 +61,11 @@
       "type": "STRING"
     },
     {
-      "name": "find",
+      "name": "findBit1",
+      "type": "STRING"
+    },
+    {
+      "name": "findBit2",
       "type": "STRING"
     },
     {
