@@ -57,11 +57,7 @@
       "type": "STRING"
     },
     {
-      "name": "findLessThanSatisfied",
-      "type": "STRING"
-    },
-    {
-      "name": "findGreaterThanSatisfied",
+      "name": "find",
       "type": "STRING"
     },
     {

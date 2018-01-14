@@ -22,7 +22,7 @@
     },
     {
       "name": "zone",
-      "type": "INT"
+      "type": "STRING"
     },
     {
       "name": "cik",
@@ -38,7 +38,7 @@
     },
     {
       "name": "code",
-      "type": "STRING"
+      "type": "INT"
     },
     {
       "name": "size",
@@ -46,11 +46,11 @@
     },
     {
       "name": "idx",
-      "type": "STRING"
+      "type": "INT"
     },
     {
       "name": "norefer",
-      "type": "STRING"
+      "type": "INT"
     },
     {
       "name": "noagent",
